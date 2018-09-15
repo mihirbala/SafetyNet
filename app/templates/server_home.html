@@ -1,22 +1,64 @@
 <!DOCTYPE html>
 <html>
+<head>
+
+    <input type="hidden" id="lat" value="{{latitude}}">
+    <input type="hidden" id="lon" value="{{longitude}}">
+
+    <title>SafetyNet</title>
+
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px; /* The height is 400 pixels */
+            width: 100%; /* The width is the width of the web page */
+        }         
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
 <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      var longitude = document.getElementById('lon').value
+      var latitude = document.getElementById('lat').value
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat: 35.7596, lng: -79.0193 },
+          zoom: 5
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj1x4wrHIo0deGIux8exz7IUHKxMTsx2M&callback=initMap"
+            async defer></script>
 
-    <h4>SafetyNet</h4>
-    <p></p>
+    <script>
+        // JACK GET THIS PART TO RUN PLS LMAO
+      function add_marker() {
+        // The marker, positioned at Uluru
+        map = google.maps.Map(document.getElementById('map')
 
-    <form action="/user/namepoint" method="post">
-        <fieldset>
-            <legend>name:</legend>
-            First name:<br>
-            <input name="firstname" id="first" value="Ethan">
-            <br>
-            Last name:<br>
-            <input name="lastname" id="last" value="Hunt">
-            <br><br>
-            <input type="submit" value="Submit">
-        </fieldset>
-    </form>
+        var marker = new google.maps.Marker({ position: , map: map });
 
+      }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
 </body>
+
+
 </html>

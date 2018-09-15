@@ -34,6 +34,8 @@ def main():
             return
         break
 
+    with open("./data/port.txt", "w") as f:
+        f.write(str(default_port))
 
 
 if __name__ == "__main__":
