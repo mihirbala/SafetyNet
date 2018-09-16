@@ -3,7 +3,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const bodyParser = require("body-parser")
 const path  = require("path");
-var io = require('socket.io')(app);
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -23,10 +22,10 @@ app.get("/", function(req, res) {
 
 app.post('/newmark', function(req, res) {
   var lat = req.body.lat;
-  var long = req.body.long;
-  console.log(lat);
-  console.log(long);
-  io.emit('new coords', lat + " " + long);
+  var lng = req.body.lng;
+  var img = req.body.img;
+  io.emit('new coords', {'lat' : lat, 'lng' : lng, 'img' : img});
+  res.send("Added point of interest!");
 });
 
 // tell server to listen on port 3000 and when the server starts, run a callback function that console.log's a message
