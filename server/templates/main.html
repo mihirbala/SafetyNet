@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script src="application.js"></script>
     <style>
        /* Set the size of the div element that contains the map */
       #map {
@@ -9,6 +12,19 @@
        }
     </style>
   </head>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
+
+  <script>
+  $(function () {
+    var socket = io();
+    socket.on('new coords', function(msg){
+      console.log(msg);
+    });
+  });
+</script>
   <body>
     <h3>SafetyNet</h3>
     <!--The div element for the map -->
@@ -16,40 +32,25 @@
     <script>
 // Initialize and add the map
 
-function addWindow(path, mapName, mark)  {
-  var windowContent = "<div style='float:left'><img src=http://i.stack.imgur.com/g672i.png></div><div style='float:right; padding: 10px;'><b>Drone Capture</b><br/></div>";
+function addMarker(latitude, longitude, mapName) {
+	var newPos = {lat: latitude, lng: longitude};
+	//console.log(latitude);
+	//console.log(longitude);
 
-  var infoWindow = new google.maps.InfoWindow({
-    content: windowContent
-  });
-  console.log('here');
-
-  mark.addListener('click', function() {
-    console.log('got here');
-    infoWindow.open(mapName, mark);
-  });
-}
-
-function addMarker(latitude, longitude, mapName, path) {
-  var newPos = {lat: latitude, lng: longitude};
-
-  var newMarker = new google.maps.Marker({position: newPos, map: mapName});
-
-  addWindow(path, mapName, newMarker);
+	var newMarker = new google.maps.Marker({position: newPos, map: mapName});
 }
 
 function initMap() {
   // The location of Uluru
   var africa = {lat: 5, lng: 5};
   var testpos = {lat: 6, lng: 6};
-  var path = "test";
   // The map, centered at Uluru
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 4, center: africa});
+  document.getElementById('map'), {zoom: 4, center: africa});
   // The marker, positioned at Uluru
   var marker = new google.maps.Marker({position: africa, map: map});
   //var marker2 = new google.maps.Marker({position: testpos, map: map});
-  addMarker(6,6, map, path);
+  addMarker(6,6, map)
 }
 
     </script>
