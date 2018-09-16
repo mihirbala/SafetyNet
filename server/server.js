@@ -4,6 +4,7 @@ const express = require("express");
 // require the body-parser module
 const bodyParser = require("body-parser")
 const path  = require("path");
+var io = require('socket.io')(app);
 
 // create an object from the express function which we contains methods for making requests and starting the server
 const app = express();
