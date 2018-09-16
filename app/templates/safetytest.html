@@ -15,6 +15,15 @@
     <div id="map"></div>
     <script>
 // Initialize and add the map
+
+function addMarker(latitude, longitude, mapName) {
+	var newPos = {lat: latitude, lng: longitude};
+	console.log(latitude);
+	console.log(longitude);
+
+	var newMarker = new google.maps.Marker({position: newPos, map: mapName});
+}
+
 function initMap() {
   // The location of Uluru
   var africa = {lat: 5, lng: 5};
@@ -23,17 +32,9 @@ function initMap() {
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 4, center: africa});
   // The marker, positioned at Uluru
-  //var marker = new google.maps.Marker({position: africa, map: map});
+  var marker = new google.maps.Marker({position: africa, map: map});
   //var marker2 = new google.maps.Marker({position: testpos, map: map});
   addMarker(6,6, map)
-}
-
-function addMarker(latitude, longitude, mapName) {
-	var newPos = {lat: latitude, lng: longitude};
-	console.log(latitude);
-	console.log(longitude);
-
-	var newMarker = new google.maps.Marker({position: newPos, map: map});
 }
 
     </script>
