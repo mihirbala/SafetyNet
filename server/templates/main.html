@@ -4,21 +4,14 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
     <script src="application.js"></script>
-    <style>
-       /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-       }
-    </style>
   </head>
   <script src="http://localhost:3000/socket.io/socket.io.js"></script>
   <script> var impath  = "http://localhost:8888/"</script>
 
   <body>
-    <h3>SafetyNet</h3>
-    <!--The div element for the map -->
+    <div id="logo"></div>
     <div id="map"></div>
+    <div id="background"></div>
     <script>
     var map = null;
     var socket = io();
@@ -32,7 +25,6 @@
       });
 
     function addWindow(path, mapName, mark)  {
-        console.log(path);
       var windowContent = "<div style='float:left'><img src=" + impath + path + "></div><div style='float:right; padding: 10px;'><b>Drone Capture</b><br/></div>";
 
       var infoWindow = new google.maps.InfoWindow({
@@ -46,7 +38,7 @@
 
     function addMarker(latitude, longitude, mapName, path) {
     	var newPos = {lat: latitude, lng: longitude};
-    	var newMarker = new google.maps.Marker({position : newPos, map : mapName});
+    	var newMarker = new google.maps.Marker({position : newPos, map : mapName, icon: {url: "newicon.png", scaledSize: new google.maps.Size(64,64)}});
         addWindow(path, mapName, newMarker);
     }
 
@@ -54,7 +46,166 @@
       // The location of Uluru
       var africa = {lat: 5, lng: 5};
       // The map, centered at Uluru
-      map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: africa});
+      map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: africa, styles: [
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#dadada"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#c9c9c9"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  }
+]});
     }
 
     </script>
