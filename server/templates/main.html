@@ -13,7 +13,7 @@
     </style>
   </head>
   <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-
+  <script> var impath  = "http://localhost:8888/"</script>
 
   <body>
     <h3>SafetyNet</h3>
@@ -27,14 +27,27 @@
     $(function () {
         var socket = io();
         socket.on('new coords', function(msg){
-        console.log(msg);
-        addMarker(parseFloat(msg.lat), parseFloat(msg.lng), map);
+        addMarker(parseFloat(msg.lat), parseFloat(msg.lng), map, msg.img);
         });
       });
 
-    function addMarker(latitude, longitude, mapName) {
+    function addWindow(path, mapName, mark)  {
+        console.log(path);
+      var windowContent = "<div style='float:left'><img src=" + impath + path + "></div><div style='float:right; padding: 10px;'><b>Drone Capture</b><br/></div>";
+
+      var infoWindow = new google.maps.InfoWindow({
+        content: windowContent
+      });
+
+      mark.addListener('click', function() {
+        infoWindow.open(mapName, mark);
+      });
+    }
+
+    function addMarker(latitude, longitude, mapName, path) {
     	var newPos = {lat: latitude, lng: longitude};
     	var newMarker = new google.maps.Marker({position : newPos, map : mapName});
+        addWindow(path, mapName, newMarker);
     }
 
     function initMap() {

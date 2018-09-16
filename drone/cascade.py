@@ -6,7 +6,7 @@ import os
 from zipfile import ZipFile
 import requests
 
-ZIP_DIR = 'zips'
+ZIP_DIR = '/Applications/MAMP/htdocs/zips'
 
 if not os.path.exists(ZIP_DIR):
 	os.mkdir(ZIP_DIR)
@@ -46,17 +46,22 @@ while(True):
 	        images_file,
 	        threshold='0.6',
 	        classifier_ids=["default"]).get_result()
-	    
+
 	    flagged_images = []
 	    for img in classes["images"]:
 	    	for c in img["classifiers"][0]["classes"]:
 	    		if c["class"] == "person":
-	    			flagged_images.append(c["image"])
+	    			flagged_images.append(img["image"])
 
 	    # TODO: Add 'geotagging'
+	    if len(flagged_images) != 0:
+                print "Adding images"
 	    for image in flagged_images:
 	        gps_loc = [35.802887, 139.094066]
-	        payload = {'lat' : str(gps_loc[0]), 'lng' : str(gps_loc[1]), 'img' : image}
+	        path = image.split('/')
+	        new_path = os.path.join("zips/", path[5])
+                print new_path
+                payload = {'lat' : str(gps_loc[0]), 'lng' : str(gps_loc[1]), 'img' : new_path}
 	        r = requests.post("http://localhost:3000/newmark", data=payload)
 
 cv2.destroyAllWindows()
