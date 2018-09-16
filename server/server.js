@@ -1,11 +1,13 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var express = require('express');
 const bodyParser = require("body-parser")
 const path  = require("path");
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(express.static('templates'));
 
 io.on('connection', function(socket){
   console.log('a user connected');
