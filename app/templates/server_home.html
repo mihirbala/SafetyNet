@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 
-    <input type="hidden" id="lat" value="{{latitude}}">
-    <input type="hidden" id="lon" value="{{longitude}}">
+    <input type="hidden" name="lat" id="lat" value="{{latitude}}">
+    <input type="hidden" name="lon" id="lon" value="{{longitude}}">
 
     <title>SafetyNet</title>
 
@@ -25,11 +25,17 @@
 </head>
 
 <body>
+
     <div id="map"></div>
     <script>
       var map;
-      var longitude = document.getElementById('lon').value
-      var latitude = document.getElementById('lat').value
+      var longitude = document.getElementById('lon');
+      var latitude = document.getElementById('lat');
+
+      console.log(latitude)
+      console.log(longitude)
+      console.log("what the?")
+
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: { lat: 35.7596, lng: -79.0193 },
@@ -70,13 +76,14 @@
       }
       */
     </script>
+
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj1x4wrHIo0deGIux8exz7IUHKxMTsx2M&callback=initMap">
     </script>
 </body>
 
