@@ -14,7 +14,7 @@
         #map {
             height: 400px; /* The height is 400 pixels */
             width: 100%; /* The width is the width of the web page */
-        }         
+        }
         /* Optional: Makes the sample page fill the window. */
         html, body {
             height: 100%;
@@ -41,6 +41,25 @@
             async defer></script>
 
     <script>
+
+    function addMarkerToMap(lat, long, htmlMarkupForInfoWindow) {
+      var infowindow = new google.maps.InfoWindow();
+      var myLatLng = new google.maps.LatLng(lat, long);
+      var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          animation: google.maps.Animation.DROP,
+      }); //Gives each marker an Id for the on click
+      markerCount++; //Creates the event listener for clicking the marker //and places the marker on the map
+      google.maps.event.addListener(marker, 'click', (function(marker, markerCount) {
+          return function() {
+              infowindow.setContent(htmlMarkupForInfoWindow);
+              infowindow.open(map, marker);
+          }
+      })(marker, markerCount)); //Pans map to the new location of the marker
+      map.panTo(myLatLng)
+    }
+/*
         // JACK GET THIS PART TO RUN PLS LMAO
       function add_marker() {
         // The marker, positioned at Uluru
@@ -49,6 +68,7 @@
         var marker = new google.maps.Marker({ position: , map: map });
 
       }
+      */
     </script>
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
