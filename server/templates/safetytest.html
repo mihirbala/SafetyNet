@@ -17,25 +17,25 @@
 // Initialize and add the map
 
 function addWindow(path, mapName, mark)  {
-  var windowContent = "<div style='float:left'><img src=http://i.stack.imgur.com/g672i.png></div><div style='float:right; padding: 10px;'><b>Drone Capture</b><br/></div>";
+	var windowContent = "<div style='float:left'><img src=http://i.stack.imgur.com/g672i.png></div><div style='float:right; padding: 10px;'><b>Drone Capture</b><br/></div>";
 
-  var infoWindow = new google.maps.InfoWindow({
-    content: windowContent
-  });
-  console.log('here');
+	var infoWindow = new google.maps.InfoWindow({
+		content: windowContent
+	});
+	console.log('here');
 
-  mark.addListener('click', function() {
-    console.log('got here');
+	mark.addListener('click', function() {
+		console.log('got here');
     infoWindow.open(mapName, mark);
   });
 }
 
 function addMarker(latitude, longitude, mapName, path) {
-  var newPos = {lat: latitude, lng: longitude};
+	var newPos = {lat: latitude, lng: longitude};
 
-  var newMarker = new google.maps.Marker({position: newPos, map: mapName});
+	var newMarker = new google.maps.Marker({position: newPos, map: mapName});
 
-  addWindow(path, mapName, newMarker);
+	addWindow(path, mapName, newMarker);
 }
 
 function initMap() {
