@@ -3,4 +3,4 @@
 *.mp4
 *.json
 data/
-node_modeules/
+node_modules/
