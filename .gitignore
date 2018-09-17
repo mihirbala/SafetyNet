@@ -4,3 +4,7 @@
 *.json
 data/
 node_modules/
+*.txt
+*.zip
+load_frame.py
+zips/
