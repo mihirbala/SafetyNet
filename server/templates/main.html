@@ -19,15 +19,16 @@
 
     // Initialize and add the map
 
-        $(function () {
-        var socket = io();
-        socket.on('new coords', function(msg){
-        addMarker(parseFloat(msg.lat), parseFloat(msg.lng), map, msg.img);
-        });
+    $(function () {
+      var socket = io();
+      socket.on('new coords', function(msg){
+      addMarker(parseFloat(msg.lat), parseFloat(msg.lng), map, msg.img);
       });
+    });
  
 
     function addWindow(path, mapName, mark)  {
+      var date = new Date();
       var windowContent = "<div style='float:left'><img src=" + impath + path + "></div><div style='float:right; padding: 10px;'><b>Drone Capture</b><br/></div>";
 
       var infoWindow = new google.maps.InfoWindow({
