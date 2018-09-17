@@ -6,10 +6,10 @@ SafetyNet is a drone network framework for coordinating search and rescue teams 
 ## Installation
 SafetyNet is currently in its protoype stage.  Thus, this is for demonstration purposes only.  It requires OpenCV, Node.js, a Watson API key, and a Google Maps API key.
 
-First, clone the repository using 'git clone https://github.com/mihirbala/SafetyNet.git'
+First, clone the repository using `git clone https://github.com/mihirbala/SafetyNet.git`
 
-Then, from the repository, run 'node server/server.js'
+Then, from the repository, run `node server/server.js`
 
-Finally, run 'python drone/cascade.py -i TEST_VIDEO_HERE -g GEOTAG_FILE_HERE'
+Finally, run `python drone/cascade.py -i TEST_VIDEO_HERE -g GEOTAG_FILE_HERE`
 
 By default, the server runs on port 3000.
